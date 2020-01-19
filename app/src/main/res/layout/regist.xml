@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Regist">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstLayout">
+
+        <!-- CAMPO NOME -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nome"
+            android:layout_marginTop="75dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:hint="Name" />
+
+        <!-- CAMPO MAIL -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mail"
+            android:layout_below="@id/nome"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:hint="Mail" />
+
+        <!-- CAMPO PASS -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pass"
+            android:layout_below="@id/mail"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:hint="Password" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondlayout"
+        android:layout_below="@id/firstLayout"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Regist"
+            android:id="@+id/btnRegist"
+            android:onClick="btnRegist"
+            android:textSize="16dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColorHint="#000000"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

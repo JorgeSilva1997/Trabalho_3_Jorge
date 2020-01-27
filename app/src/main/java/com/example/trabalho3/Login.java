@@ -27,7 +27,8 @@ public class Login extends AppCompatActivity {
 
     String prefix_url = "http://andrefelix.dynip.sapo.pt/trabalho3_jorge/index.php/api";
     // Este ID é devido a ser Multi-User
-    int id_int = -1;
+
+    int id = -1;
 
     EditText user, pass;
     boolean status;
@@ -97,7 +98,9 @@ public class Login extends AppCompatActivity {
                                     startActivity(intent);
 
                             } else {
-                                Toast.makeText(Login.this, "Login Falhou!", Toast.LENGTH_SHORT).show();
+
+                                Toast.makeText(Login.this, R.string.error_login, Toast.LENGTH_SHORT).show();
+
                             }
 
 

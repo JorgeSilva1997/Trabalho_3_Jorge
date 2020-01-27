@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/back">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/firstLayout"
+        android:background="@drawable/round_corners">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:hint="@string/title_login"
+            android:textColorHint="#000000"
+            android:textSize="24sp"
+            android:typeface="serif" />
+
+        <!-- USER -->
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"
+            android:background="#808080"
+            android:src="@mipmap/person1" />
+
+        <EditText
+            android:id="@+id/user"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@id/img1"
+            android:background="#606060"
+            android:hint="@string/user"
+
+            android:padding="5dp"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+
+        <!-- PASSWORD -->
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/img1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:background="#808080"
+            android:src="@mipmap/cadeado1" />
+
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@id/user"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@id/img2"
+            android:background="#606060"
+
+            android:hint="@string/pass"
+            android:padding="5dp"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/box"
+            android:hint="@string/checkBox"
+            android:layout_below="@id/pass"
+            android:layout_marginTop="10dp"
+            android:textSize="13dp"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/log"
+            android:onClick="btnLogin"
+            android:hint="@string/login"
+            android:layout_below="@id/box"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColorHint="#000000"
+            android:typeface="serif"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/firstLayout"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/regist"
+            android:onClick="btnRegist"
+            android:hint="@string/regist"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:typeface="serif"
+            android:textSize="15dp"
+
+            android:background="@drawable/btn_round"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

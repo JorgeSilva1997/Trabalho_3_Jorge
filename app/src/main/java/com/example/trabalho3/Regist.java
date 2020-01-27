@@ -54,16 +54,14 @@ public class Regist extends AppCompatActivity {
             return;
         }
 
+
         if (TextUtils.isEmpty(email)) {
             mail.setError("Please enter your email");
             mail.requestFocus();
             return;
         }
-        if (TextUtils.isEmpty(password)) {
-            pass.setError("Please enter your password");
-            pass.requestFocus();
-            return;
-        }
+
+
         else {
 
             insert(nome, email, password);
@@ -135,20 +133,18 @@ public class Regist extends AppCompatActivity {
     );
 
     //Metodo INSERT
+
     public void insert(String nome, String email, String password)
+
     {
 
         String url = prefix_url + "/insert";
         Map<String, String> jsonParams = new HashMap<String, String>();
 
         jsonParams.put("nome", nome);
-
         String emailcheck = validateEmail(email);
         jsonParams.put("mail", emailcheck);
 
-        String passwordchecking = checkPass(password);
-        String passCheck = computeMD5Hash(passwordchecking);
-        jsonParams.put("password", passCheck);
 
         JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url,
 
@@ -166,11 +162,12 @@ public class Regist extends AppCompatActivity {
                                 //Bloco de codigo
                                 Toast.makeText(Regist.this, R.string.regist_add, Toast.LENGTH_SHORT).show();
                                 finish();
-
                             } else {
 
                                 //Bloco de codigo
+
                                 Toast.makeText(Regist.this, R.string.regist_error, Toast.LENGTH_SHORT).show();
+
 
                             }
                         } catch (JSONException ex) {

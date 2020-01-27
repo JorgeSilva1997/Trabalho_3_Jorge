@@ -15,6 +15,7 @@
         android:background="@drawable/round_corners">
 
         <TextView
+
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
             android:textColorHint="#000000"
             android:textSize="24sp"
             android:typeface="serif" />
+
 
         <!-- USER -->
         <ImageView
@@ -52,10 +54,26 @@
             android:textColor="#FFFFFF"
             android:textSize="15dp" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user"
+            android:hint="  Utilizador"
+            android:layout_below="@id/title"
+            android:layout_toRightOf="@id/img1"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:textSize="10dp"
+
+            android:textColorHint="#FFFFFF"
+            android:background="#606060"
+            android:padding="5dp"/>
+
 
         <!-- PASSWORD -->
         <ImageView
             android:id="@+id/img2"
+
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_below="@id/img1"
@@ -73,7 +91,6 @@
             android:layout_marginRight="15dp"
             android:layout_toRightOf="@id/img2"
             android:background="#606060"
-
             android:hint="@string/pass"
             android:padding="5dp"
             android:textColorHint="#FFFFFF"
@@ -84,10 +101,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/box"
+
             android:hint="@string/checkBox"
             android:layout_below="@id/pass"
             android:layout_marginTop="10dp"
             android:textSize="13dp"/>
+
 
 
         <Button
@@ -103,7 +122,9 @@
             android:textColorHint="#000000"
             android:typeface="serif"
             android:textStyle="bold"
+
             android:textSize="16dp"
+
             android:layout_marginBottom="10dp"
             android:background="@android:color/darker_gray"/>
 
@@ -122,11 +143,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/regist"
             android:onClick="btnRegist"
+
             android:hint="@string/regist"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
             android:typeface="serif"
             android:textSize="15dp"
+
 
             android:background="@drawable/btn_round"/>
 

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Detail">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstLayout"
+        android:layout_marginTop="25dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Perfil Contacto"
+        android:textSize="35dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/title_detail"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/firstLayout"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginLeft="35dp">
+
+    <!-- NAME -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name1"
+            android:hint="Nome:"
+            android:textColorHint="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:layout_toRightOf="@id/name1"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"/>
+
+    <!-- LASTNAME -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lastname"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:layout_toRightOf="@id/name"
+            android:layout_marginLeft="6dp"
+            android:textSize="18dp"/>
+
+    <!-- PERSONAL NUMBER -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personalNumber1"
+            android:hint="Personal Number:"
+            android:layout_below="@id/name1"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personalNumber"
+            android:layout_below="@id/lastname"
+            android:layout_marginTop="8dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:layout_toRightOf="@id/personalNumber1"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"/>
+
+    <!-- COMPANY NUMBER -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/companyNumber1"
+            android:hint="Company Number:"
+            android:layout_below="@id/personalNumber1"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/companyNumber"
+            android:layout_below="@id/personalNumber"
+            android:layout_marginTop="8dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:layout_toRightOf="@id/companyNumber1"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"/>
+
+    <!-- MAIL -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mail1"
+            android:hint="Email:"
+            android:layout_below="@id/companyNumber1"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mail"
+            android:layout_below="@id/companyNumber"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:layout_toRightOf="@id/mail1"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"/>
+
+    <!-- POSTALCODE -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postalCode1"
+            android:hint="Postal Code:"
+            android:layout_below="@id/mail1"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postalCode"
+            android:layout_below="@id/mail"
+            android:layout_marginTop="8dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:layout_toRightOf="@id/postalCode1"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

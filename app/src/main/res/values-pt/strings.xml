@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trabalho 3</string>
+    <string name="alert_pass">Por favor inserir password</string>
+    <string name="alert_user">Por favor inserir nome</string>
+    <string name="checkBox">Lembrar utilizador</string>
+    <string name="error_login">Login falhou!</string>
+    <string name="error_pass">Por favor veririfque password</string>
+    <string name="login">LOGIN</string>
+    <string name="pass">Password</string>
+    <string name="regist">Registar</string>
+    <string name="regist_add">Inserido com sucesso!</string>
+    <string name="regist_error">Erro na inserção!</string>
+    <string name="regist_mail">Email</string>
+    <string name="regist_name">Nome</string>
+    <string name="title_login">Login Membro</string>
+    <string name="user">Utilizador</string>
+</resources>

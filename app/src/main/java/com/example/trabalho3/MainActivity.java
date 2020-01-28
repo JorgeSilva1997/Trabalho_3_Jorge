@@ -2,7 +2,11 @@ package com.example.trabalho3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, "" + id, Toast.LENGTH_SHORT).show();
         lista = (ListView) findViewById(R.id.lista);
         filllista();
+
+        // INICIAÇÃO DA CLASSE DETAIL
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> c1, View view, int position, long id1) {
+
+                //Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Detail.class);
+                intent.putExtra("ID", id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void filllista(){

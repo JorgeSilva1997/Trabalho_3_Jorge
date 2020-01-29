@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Trabalho 3</string>
+
+    <!--    INICIO DO LOGIN -->
+    <string name="title_login">Member Login</string>
+    <string name="user">User</string>
+    <string name="pass">Password</string>
+    <string name="checkBox">Remember user</string>
+    <string name="login">LOGIN</string>
+    <string name="regist">REGIST</string>
+    <string name="error_login">Login fail!</string>
+    <!--    FIM DO LOGIN    -->
+
+    <!--    IINICIO REGIST  -->
+    <string name="regist_name">Name</string>
+    <string name="regist_mail">Mail</string>
+    <string name="error_pass">Please check your password!</string>
+    <string name="regist_add">Add successfully</string>
+    <string name="regist_error">Insertion error</string>
+    <!--    FIM DO REGIST   -->
+
 </resources>

@@ -54,31 +54,9 @@
             android:textColor="#FFFFFF"
             android:textSize="15dp" />
 
-
         <!-- PASSWORD -->
         <ImageView
             android:id="@+id/img2"
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/user"
-            android:hint="  Utilizador"
-            android:layout_below="@id/title"
-            android:layout_toRightOf="@id/img1"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="15dp"
-            android:textSize="10dp"
-
-            android:textColorHint="#FFFFFF"
-            android:background="#606060"
-            android:padding="5dp"/>
-
-
-        <!-- PASSWORD -->
-        <ImageView
-            android:id="@+id/img2"
-
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_below="@id/img1"
@@ -96,9 +74,7 @@
             android:layout_marginRight="15dp"
             android:layout_toRightOf="@id/img2"
             android:background="#606060"
-
             android:inputType="textPassword"
-
             android:hint="@string/pass"
             android:padding="5dp"
             android:textColorHint="#FFFFFF"

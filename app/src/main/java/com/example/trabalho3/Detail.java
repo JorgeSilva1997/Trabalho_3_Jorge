@@ -91,13 +91,13 @@ public class Detail extends AppCompatActivity {
                                 Toast.makeText(Detail.this, "" + status, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException ex) {
-                            Toast.makeText(Detail.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Detail.this, "Erro 1!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Detail.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Detail.this, "Erro 2!", Toast.LENGTH_SHORT).show();
                     }
                 });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);

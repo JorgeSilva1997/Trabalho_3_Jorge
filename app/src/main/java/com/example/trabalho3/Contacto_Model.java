@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Contacto_Model {
 
-    //public String id_contacto;
+    public String id;
     public String name;
     public String lastname;
     public String personal_number;
@@ -13,10 +13,10 @@ public class Contacto_Model {
     public String postalCode;
     //public String user_id;
 
-    public Contacto_Model(/*String id_contacto,*/ String name, String lastname, String personal_number, String company_number,
+    public Contacto_Model(String id, String name, String lastname, String personal_number, String company_number,
                           String mail, String postalCode/*, String user_id*/){
 
-        //this.id_contacto = id_contacto;
+        this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.personal_number = personal_number;
@@ -25,11 +25,11 @@ public class Contacto_Model {
         this.postalCode = postalCode;
         //this.user_id = user_id;
     }
-/*
-    public String getId_contacto() {return id_contacto;}
 
-    public void setId_contacto(String id_contacto){this.id_contacto = id_contacto;}
-*/
+    public String getId_contacto() {return id;}
+
+    public void setId_contacto(String id){this.id = id;}
+
 
     public String getName() {return name;}
 

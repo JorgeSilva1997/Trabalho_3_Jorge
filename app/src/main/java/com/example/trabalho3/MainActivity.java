@@ -1,9 +1,18 @@
 package com.example.trabalho3;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -36,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         id = getIntent().getIntExtra("ID", -1);
 
-        Toast.makeText(MainActivity.this, "" + id, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, "" + id, Toast.LENGTH_SHORT).show();
         lista = (ListView) findViewById(R.id.lista);
         filllista();
 
@@ -51,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        registerForContextMenu(lista);
+
     }
 
     private void filllista(){
@@ -72,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     JSONObject object1 = array.getJSONObject(i);
                                     arrayContacto.add(new Contacto_Model(
-                                            object1.getString("name"), object1.getString("lastname"), object1.getString("personal_number"),
+                                            object1.getString("id"), object1.getString("name"), object1.getString("lastname"), object1.getString("personal_number"),
                                             object1.getString("company_number"), object1.getString("mail"), object1.getString("postalCode")));
 
                                     // TextViews para passar os parametros
@@ -84,15 +96,132 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "" + status, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException ex) {
-                            Toast.makeText(MainActivity.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Erro 1!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Erro 2!", Toast.LENGTH_SHORT).show();
                     }
                 });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
+
+    // CLASSE EDIT
+
+    //Gestão dos menus contextuais
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+    // Bloco de código do EDITAR e REMOVER um contacto
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Context mContext = this;
+        switch (item.getItemId()){
+            case R.id.editar:
+                Intent intent = new Intent(MainActivity.this, Edit.class);
+                int itemPosition = info.position;
+                String id = arrayContacto.get(itemPosition).id;
+                intent.putExtra("id", id);
+                intent.putExtra("name", arrayContacto.get(itemPosition).name);
+                intent.putExtra("lastname", arrayContacto.get(itemPosition).lastname);
+                intent.putExtra("personal_number", arrayContacto.get(itemPosition).personal_number);
+                intent.putExtra("company_number", arrayContacto.get(itemPosition).company_number);
+                intent.putExtra("mail", arrayContacto.get(itemPosition).mail);
+                intent.putExtra("postalCode", arrayContacto.get(itemPosition).postalCode);
+
+                startActivity(intent);
+                return true;
+
+            case R.id.remover:
+                // Pedir confirmação
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setCancelable(true);
+                builder.setMessage(R.string.certeza);
+                builder.setPositiveButton(R.string.confirmar,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int itemPosition = info.position;
+                                String idremove = arrayContacto.get(itemPosition).id;
+                                deleteFromBD(idremove);
+                                filllista();
+                            }
+                        });
+                builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+    private void deleteFromBD(String id){
+        arrayContacto.removeAll(arrayContacto);
+        String url = prefix_url + "/delete/" + id ;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            boolean resultado = response.getBoolean("status");
+                            if (resultado) {
+                                filllista();
+                            } else {
+                                Toast.makeText(MainActivity.this, R.string.error_delete, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException ex) {
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+    }
+
+
+    // Bloco de código para o LOGOUT
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.LogOut:
+                SharedPreferences mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.remove("name");
+                editor.remove("password");
+                editor.commit();
+                finish();
+            case R.id.Refresh:
+                arrayContacto.removeAll(arrayContacto);
+                filllista();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

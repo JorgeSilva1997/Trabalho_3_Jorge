@@ -15,4 +15,21 @@
     <string name="regist_name">Nome</string>
     <string name="title_login">Login Membro</string>
     <string name="user">Utilizador</string>
+    <string name="certeza">Tem a certeza que pretende eliminar o contacto?</string>
+    <string name="confirmar">Ok</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="edit">Editar</string>
+    <string name="remove">Remover</string>
+    <string name="error_delete">Eliminar falhou!</string>
+    <string name="detail_title">Perfil Contacto</string>
+    <string name="pnumber">Número Pessoal:</string>
+    <string name="name">Nome:</string>
+    <string name="cnumber">Número profissional:</string>
+    <string name="mail">Email:</string>
+    <string name="pcode">Código postal:</string>
+    <string name="lname">Apelido</string>
+    <string name="Pnumber">Número pessoal</string>
+    <string name="Cnumber">Telefone</string>
+    <string name="Mail">Email</string>
+    <string name="Pcode">Código Postal</string>
 </resources>

@@ -24,9 +24,7 @@ public class MyArrayAdapterContacto extends ArrayAdapter<Contacto_Model> {
         {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_contactos, parent, false);
         }
-        //((TextView) convertView.findViewById(R.id.id_convocatoria)).setText(c.getId_convocatoria());
-        //((TextView) convertView.findViewById(R.id.user_nome)).setText(c.getUser_nome());
-
+        //((TextView) convertView.findViewById(R.id.ID)).setText(c.getId_contacto());
         ((TextView) convertView.findViewById(R.id.NOME)).setText(c.getName());
         ((TextView) convertView.findViewById(R.id.LASTNAME)).setText(c.getLastname());
         ((TextView) convertView.findViewById(R.id.PERSONAL_NUMBER)).setText(c.getPersonal_number());

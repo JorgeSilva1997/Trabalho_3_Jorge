@@ -3,6 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/Add"
+        app:showAsAction="ifRoom"
+        android:title=""
+        android:icon="@drawable/ic_add">
+    </item>
     <item
         android:id="@+id/Refresh"
         app:showAsAction="ifRoom"

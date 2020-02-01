@@ -33,4 +33,10 @@
     <string name="Mail">Email</string>
     <string name="Pcode">Código Postal</string>
     <string name="add">ADICIONAR</string>
+    <string name="perfil">Perfil</string>
+    <string name="perfil_title">Seu Perfil</string>
+    <string name="recente">Contactos recentes</string>
+    <string name="oreder_number">Ordenado por número</string>
+    <string name="oder_name">Ordenado por nome</string>
+    <string name="def">Padrão</string>
 </resources>

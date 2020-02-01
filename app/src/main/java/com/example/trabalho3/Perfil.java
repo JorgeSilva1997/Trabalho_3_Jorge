@@ -1,10 +1,7 @@
 package com.example.trabalho3;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
+import android.util.DisplayMetrics;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,42 +17,40 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-import java.util.ArrayList;
-
-public class Detail extends AppCompatActivity {
+public class Perfil extends AppCompatActivity {
 
     String prefix_url = "http://andrefelix.dynip.sapo.pt/trabalho3_jorge/index.php/api";
     int id;
 
-    TextView nome, lastname, personalNumber, companyNumber, mail, postalCode;
+    TextView nome, mail, password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.perfil);
 
         id = getIntent().getIntExtra("ID", -1);
 
-        Toast.makeText(Detail.this, "" + id, Toast.LENGTH_SHORT).show();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
 
-        detail();
+        getWindow().setLayout((int)(width*.8),(int)(height*.6));
+
+        perfil();
     }
 
+    public void perfil() {
 
-    public void detail() {
-
-        nome = (TextView) findViewById(R.id.name);
-        lastname = (TextView) findViewById(R.id.lastname);
-        personalNumber = (TextView) findViewById(R.id.personalNumber);
-        companyNumber = (TextView) findViewById(R.id.companyNumber);
+        nome = (TextView) findViewById(R.id.nome);
         mail = (TextView) findViewById(R.id.mail);
-        postalCode = (TextView) findViewById(R.id.postalCode);
+        password = (TextView) findViewById(R.id.password);
 
+        String url = prefix_url + "/utilizadores/" + id;
 
-        String url = prefix_url + "/contacto/" + id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -71,29 +66,26 @@ public class Detail extends AppCompatActivity {
 
                                     JSONObject object1 = array.getJSONObject(i);
 
-                                    nome.setText(object1.getString("name"));
-                                    lastname.setText(object1.getString("lastname"));
-                                    personalNumber.setText(object1.getString("personal_number"));
-                                    companyNumber.setText(object1.getString("company_number"));
+                                    nome.setText(object1.getString("nome"));
                                     mail.setText(object1.getString("mail"));
-                                    postalCode.setText(object1.getString("postalCode"));
-
+                                    password.setText(object1.getString("password"));
                                 }
+
                             } else {
-                                Toast.makeText(Detail.this, "" + status, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Perfil.this, "" + status, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException ex) {
-                            //Toast.makeText(Detail.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Perfil.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Toast.makeText(Detail.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Perfil.this, "Erro 2!", Toast.LENGTH_SHORT).show();
                     }
                 });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
-
     }
-}
 
+}

@@ -43,5 +43,12 @@
     <string name="Mail">Email</string>
     <string name="Pcode">Postal Code</string>
     <string name="add">ADD</string>
+    <string name="perfil_title">Your Profile</string>
 
+    <!-- SPINNER -->
+    <string name="def">Default</string>
+    <string name="oder_name">Order by name</string>
+    <string name="oreder_number">Order by number</string>
+    <string name="recente">"Recent contacts "</string>
+    <string name="perfil">Profile</string>
 </resources>

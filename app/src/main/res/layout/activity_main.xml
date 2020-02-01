@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Seus contactos"
         android:textSize="35dp"
+        android:layout_below="@id/spinner"
         android:gravity="center_horizontal"
         android:id="@+id/info"/>
 
@@ -22,5 +23,14 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignParentRight="true"
+        />
+
 
 </RelativeLayout>

@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lista;
     int id;
     ArrayList<Contacto_Model> arrayContacto= new ArrayList<>();
+    Spinner spinner;
 
 
     @Override
@@ -45,9 +48,54 @@ public class MainActivity extends AppCompatActivity {
 
         id = getIntent().getIntExtra("ID", -1);
 
-        //Toast.makeText(MainActivity.this, "" + id, Toast.LENGTH_SHORT).show();
         lista = (ListView) findViewById(R.id.lista);
-        filllista();
+        arrayContacto.removeAll(arrayContacto);
+
+
+        // SPINNER
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        String[] options = {getResources().getString(R.string.def), getResources().getString(R.string.oder_name), getResources().getString(R.string.oreder_number), getResources().getString(R.string.recente), getResources().getString(R.string.perfil)};
+        ArrayAdapter a = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, options);
+        a.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(a);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id1) {
+
+                if (position == 0) {
+                    // Default
+                    arrayContacto.removeAll(arrayContacto);
+                    filllista();
+                }
+
+                if (position == 1) {
+                    // Função ordenar por nome
+                    //orderByName();
+                }
+                if (position == 2) {
+                    // Função ordenar por numero
+                    //orderByNumber();
+                }
+                if (position == 3) {
+                    // Função recentes (últimos 5)
+                    //lastFive();
+                }
+                if (position == 4) {
+                    // Função perfil
+                    Intent intent = new Intent(MainActivity.this, Perfil.class);
+                    intent.putExtra("ID", id);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         // INICIAÇÃO DA CLASSE DETAIL
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {

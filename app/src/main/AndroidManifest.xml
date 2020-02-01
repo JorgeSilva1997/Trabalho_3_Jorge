@@ -24,6 +24,10 @@
         <activity android:name=".Detail" />
         <activity android:name=".Edit" />
         <activity android:name=".Add"   />
+        <activity android:name=".Perfil"
+            android:theme="@style/AppTheme.CustomTheme">
+
+        </activity>
     </application>
 
 </manifest>

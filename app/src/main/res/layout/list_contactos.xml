@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgMail"
-        android:src="@drawable/ic_mail"
+        android:src="@drawable/ic_mail1"
         android:layout_below="@id/PERSONAL_NUMBER"
         android:layout_toLeftOf="@id/MAIL"
         android:layout_marginRight="5dp"

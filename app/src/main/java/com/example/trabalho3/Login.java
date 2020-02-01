@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
 
     public void autenticacao(String nome, String password)  {
 
-        String url = prefix_url + "/user/login";
+        String url = prefix_url + "/users/login";
 
         Map<String, String> jsonParams = new HashMap<String, String>();
         jsonParams.put("nome", nome);

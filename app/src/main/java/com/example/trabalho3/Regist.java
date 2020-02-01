@@ -138,12 +138,15 @@ public class Regist extends AppCompatActivity {
 
     {
 
-        String url = prefix_url + "/insert";
+        String url = prefix_url + "/user/insert";
         Map<String, String> jsonParams = new HashMap<String, String>();
 
         jsonParams.put("nome", nome);
         String emailcheck = validateEmail(email);
         jsonParams.put("mail", emailcheck);
+        String passCheck = checkPass(password);
+        String passMd5 = computeMD5Hash(passCheck);
+        jsonParams.put("password", passMd5);
 
 
         JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url,

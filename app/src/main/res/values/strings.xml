@@ -42,5 +42,6 @@
     <string name="Cnumber">Telephone</string>
     <string name="Mail">Email</string>
     <string name="Pcode">Postal Code</string>
+    <string name="add">ADD</string>
 
 </resources>

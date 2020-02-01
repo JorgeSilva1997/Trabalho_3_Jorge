@@ -219,6 +219,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Refresh:
                 arrayContacto.removeAll(arrayContacto);
                 filllista();
+            case R.id.Add:
+                Intent intent = new Intent(MainActivity.this, Add.class);
+                intent.putExtra("ID", id);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -16,6 +16,7 @@
         android:title=""
         android:icon="@drawable/ic_mail">
     </item>
+
     <item
         android:id="@+id/LogOut"
         app:showAsAction="ifRoom"
@@ -23,13 +24,4 @@
         android:icon="@mipmap/logout">
 
     </item>
-        <!--
-        <item
-            android:id="@+id/Refresh"
-            app:showAsAction="ifRoom"
-            android:title="">
-        </item>
-
-    -->
-
 </menu>

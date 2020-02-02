@@ -72,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 1) {
                     // Função ordenar por nome
-                    //orderByName();
+                    arrayContacto.removeAll(arrayContacto);
+                    orderByName();
                 }
                 if (position == 2) {
                     // Função ordenar por numero
-                    //orderByNumber();
+                    arrayContacto.removeAll(arrayContacto);
+                    orderByNumber();
                 }
                 if (position == 3) {
                     // Função recentes (últimos 5)
@@ -276,4 +278,91 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void orderByName() {
+
+        String url = prefix_url + "/orderName/contactos/" + id ;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            boolean status = response.getBoolean("status");
+                            if (status) {
+
+                                JSONArray array = response.getJSONArray("DATA");
+
+                                for (int i = 0; i < array.length(); i++) {
+
+                                    JSONObject object1 = array.getJSONObject(i);
+                                    arrayContacto.add(new Contacto_Model(
+                                            object1.getString("id"), object1.getString("name"), object1.getString("lastname"), object1.getString("personal_number"),
+                                            object1.getString("company_number"), object1.getString("mail"), object1.getString("postalCode")));
+
+                                    // TextViews para passar os parametros
+                                    MyArrayAdapterContacto itemsAdapter = new MyArrayAdapterContacto(MainActivity.this, arrayContacto);
+                                    ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
+
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, "" + status, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException ex) {
+                            //Toast.makeText(MainActivity.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(MainActivity.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+    }
+
+    private void orderByNumber() {
+
+        String url = prefix_url + "/orderNumber/contactos/" + id ;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            boolean status = response.getBoolean("status");
+                            if (status) {
+
+                                JSONArray array = response.getJSONArray("DATA");
+
+                                for (int i = 0; i < array.length(); i++) {
+
+                                    JSONObject object1 = array.getJSONObject(i);
+                                    arrayContacto.add(new Contacto_Model(
+                                            object1.getString("id"), object1.getString("name"), object1.getString("lastname"), object1.getString("personal_number"),
+                                            object1.getString("company_number"), object1.getString("mail"), object1.getString("postalCode")));
+
+                                    // TextViews para passar os parametros
+                                    MyArrayAdapterContacto itemsAdapter = new MyArrayAdapterContacto(MainActivity.this, arrayContacto);
+                                    ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
+
+                                }
+                            } else {
+                                Toast.makeText(MainActivity.this, "" + status, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException ex) {
+                            //Toast.makeText(MainActivity.this, "Erro 1!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(MainActivity.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+    }
 }

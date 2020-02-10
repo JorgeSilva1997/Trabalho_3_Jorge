@@ -1,59 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Trab_3.Add">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/firstLayout"
-        android:layout_marginTop="15dp">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/firstLayout">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/ic_contact"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/secondlayout"
-        android:layout_below="@id/firstLayout"
-        android:layout_marginTop="15dp">
+        android:layout_toRightOf="@id/firstLayout"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp">
 
 
-        <!-- NAME -->
+
+        <!-- NAME & LASTNAME -->
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/nome"
-            android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
             android:hint="@string/regist_name" />
 
-        <!-- LASTNAME -->
-
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lastname"
-            android:layout_below="@id/nome"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@id/nome"
+            android:layout_marginLeft="4dp"
             android:hint="@string/lname" />
 
-        <!-- PERSONAL NUMBER -->
+        <!-- PERSONAL NUMBER & COMPANY NUMBER-->
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/personalNumber"
             android:layout_below="@id/lastname"
@@ -63,16 +57,13 @@
             android:hint="@string/pnumber"
             android:maxLength="9"/>
 
-        <!-- COMPANY NUMBER -->
-
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/companyNumber"
-            android:layout_below="@id/personalNumber"
+            android:layout_below="@id/lastname"
+            android:layout_toRightOf="@id/personalNumber"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
             android:hint="@string/cnumber"
             android:maxLength="9"/>
 
@@ -100,17 +91,6 @@
             android:layout_marginLeft="50dp"
             android:hint="@string/Pcode" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/thirdLayout"
-        android:layout_below="@id/secondlayout"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp">
-
         <!-- BUTTON -->
 
         <Button
@@ -121,7 +101,11 @@
             android:onClick="btnAdd"
             android:textSize="16dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:textColorHint="#000000"/>
+            android:textColorHint="#000000"
+            android:layout_below="@id/postalCode"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"/>
 
     </RelativeLayout>
 </RelativeLayout>

@@ -1,8 +1,6 @@
-package com.example.trabalho3;
+package com.example.trabalho3.Trab_3;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,45 +10,44 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.trabalho3.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Perfil extends AppCompatActivity {
+public class Detail extends AppCompatActivity {
 
     String prefix_url = "http://andrefelix.dynip.sapo.pt/trabalho3_jorge/index.php/api";
     int id;
 
-    TextView nome, mail, password;
-
+    TextView nome, lastname, personalNumber, companyNumber, mail, postalCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfil);
+        setContentView(R.layout.detail);
 
         id = getIntent().getIntExtra("ID", -1);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Toast.makeText(Detail.this, "" + id, Toast.LENGTH_SHORT).show();
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.6));
-
-        perfil();
+        detail();
     }
 
-    public void perfil() {
 
-        nome = (TextView) findViewById(R.id.nome);
+    public void detail() {
+
+        nome = (TextView) findViewById(R.id.name);
+        lastname = (TextView) findViewById(R.id.lastname);
+        personalNumber = (TextView) findViewById(R.id.personalNumber);
+        companyNumber = (TextView) findViewById(R.id.companyNumber);
         mail = (TextView) findViewById(R.id.mail);
-        password = (TextView) findViewById(R.id.password);
+        postalCode = (TextView) findViewById(R.id.postalCode);
 
-        String url = prefix_url + "/utilizadores/" + id;
 
+        String url = prefix_url + "/contacto/" + id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -66,26 +63,29 @@ public class Perfil extends AppCompatActivity {
 
                                     JSONObject object1 = array.getJSONObject(i);
 
-                                    nome.setText(object1.getString("nome"));
+                                    nome.setText(object1.getString("name"));
+                                    lastname.setText(object1.getString("lastname"));
+                                    personalNumber.setText(object1.getString("personal_number"));
+                                    companyNumber.setText(object1.getString("company_number"));
                                     mail.setText(object1.getString("mail"));
-                                    password.setText(object1.getString("password"));
-                                }
+                                    postalCode.setText(object1.getString("postalCode"));
 
+                                }
                             } else {
-                                Toast.makeText(Perfil.this, "" + status, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Detail.this, "" + status, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException ex) {
-                            Toast.makeText(Perfil.this, "Erro 1!", Toast.LENGTH_SHORT).show();
-
+                            //Toast.makeText(Detail.this, "Erro 1!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Perfil.this, "Erro 2!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Detail.this, "Erro 2!", Toast.LENGTH_SHORT).show();
                     }
                 });
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
-    }
 
+    }
 }
+

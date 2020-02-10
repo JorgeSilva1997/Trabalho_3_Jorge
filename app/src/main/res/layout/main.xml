@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Google_Api.Main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstLayout"
+        android:layout_marginTop="75dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgApi"
+            android:src="@mipmap/api"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/secondlayout"
+        android:layout_below="@id/firstLayout"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/info"
+            android:textSize="35dp"
+            android:gravity="center_horizontal"
+            android:hint="Vôce encontra-se aqui:"/>
+
+        <!-- COORDENADAS -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Coordenadas"
+            android:layout_below="@id/info"
+            android:layout_marginTop="35dp"
+            android:text=""
+            android:layout_centerHorizontal="true"/>
+
+        <!-- FIM COORDENADAS -->
+
+        <!-- BOTAO "OBTER COORDENADAS" -->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGetCoordenadas"
+            android:layout_below="@id/Coordenadas"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="75dp"
+
+            android:text="Obter Coordenadas"/>
+
+        <!-- BOTAO "INICAR LOCALIZAÇÃO" -->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStartCoordenadas"
+            android:layout_below="@id/btnGetCoordenadas"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="22dp"
+
+            android:text="Começar Localização"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

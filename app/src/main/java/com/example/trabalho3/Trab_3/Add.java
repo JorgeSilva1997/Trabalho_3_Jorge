@@ -1,11 +1,9 @@
-package com.example.trabalho3;
+package com.example.trabalho3.Trab_3;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.trabalho3.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,35 +22,26 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Edit extends AppCompatActivity {
+public class Add extends AppCompatActivity {
 
     String prefix_url = "http://andrefelix.dynip.sapo.pt/trabalho3_jorge/index.php/api";
-    String id;
+    int id;
+    EditText name, lastname, personalNumber, companyNumber, mail, postalCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit);
+        setContentView(R.layout.add);
 
-        EditText name = (EditText) findViewById(R.id.name);
-        EditText lastname = (EditText) findViewById(R.id.lastname);
-        EditText personalNumber = (EditText) findViewById(R.id.personalNumber);
-        EditText companyNumber = (EditText) findViewById(R.id.companyNumber);
-        EditText mail = (EditText) findViewById(R.id.mail);
-        EditText postalCode = (EditText) findViewById(R.id.postalCode);
+        id = getIntent().getIntExtra("ID", -1);
+        Toast.makeText(Add.this, "" + id, Toast.LENGTH_SHORT).show();
 
-        id = getIntent().getStringExtra("id");
-        name.setText(getIntent().getStringExtra("name"));
-        lastname.setText(getIntent().getStringExtra("lastname"));
-        personalNumber.setText(getIntent().getStringExtra("personal_number"));
-        companyNumber.setText(getIntent().getStringExtra("company_number"));
-        mail.setText(getIntent().getStringExtra("mail"));
-        postalCode.setText(getIntent().getStringExtra("postalCode"));
+
     }
 
-    public void btnEdit(View view){
+    public void btnAdd (View view){
 
-        EditText name = (EditText) findViewById(R.id.name);
+        EditText name = (EditText) findViewById(R.id.nome);
         EditText lastname = (EditText) findViewById(R.id.lastname);
         EditText personalNumber = (EditText) findViewById(R.id.personalNumber);
         EditText companyNumber = (EditText) findViewById(R.id.companyNumber);
@@ -65,51 +55,53 @@ public class Edit extends AppCompatActivity {
         String email = mail.getText().toString();
         String pcode = postalCode.getText().toString();
 
-        Button edit = (Button) findViewById(R.id.btnEdit);
-
         //validating inputs
         if (TextUtils.isEmpty(nome)) {
-            name.setError("Please enter your name");
+            name.setError("Please enter  username");
             name.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(lname)) {
-            lastname.setError("Please enter your last name");
+            lastname.setError("Please enter lastname");
             lastname.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(pnumber)) {
-            personalNumber.setError("Please enter your personal number");
+            personalNumber.setError("Please enter personal number");
             personalNumber.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(cnumber)) {
-            companyNumber.setError("Please enter your company number");
+            companyNumber.setError("Please enter company number");
             companyNumber.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(email)) {
-            mail.setError("Please enter your mail");
+            mail.setError("Please enter email");
             mail.requestFocus();
             return;
         }
         if (TextUtils.isEmpty(pcode)) {
-            postalCode.setError("Please enter your postal code");
+            postalCode.setError("Please enter postal code");
             postalCode.requestFocus();
             return;
         }
         else {
-            update(nome, lname, pnumber, cnumber, email, pcode);
-        }
 
+            insert(nome, lname, pnumber, cnumber, email, pcode, id);
+        }
     }
 
-    //Metodo update
-    public void update(String nome, String lname, String pnumber, String cnumber, String email, String pcode){
+    //Metodo INSERT
 
-        String url = prefix_url + "/update/" + id;
-        Toast.makeText(Edit.this, "" + id, Toast.LENGTH_SHORT).show();
+    public void insert(String nome, String lname, String pnumber, String cnumber, String email, String pcode, int id)
+
+    {
+
+        String url = prefix_url + "/insert";
         Map<String, String> jsonParams = new HashMap<String, String>();
+
+        String tipoId = String.valueOf(id);
 
         jsonParams.put("name", nome);
         jsonParams.put("lastname", lname);
@@ -117,8 +109,11 @@ public class Edit extends AppCompatActivity {
         jsonParams.put("company_number", cnumber);
         jsonParams.put("mail", email);
         jsonParams.put("postalCode", pcode);
+        jsonParams.put("user_id", tipoId);
 
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.PUT, url,
+
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, url,
+
                 new JSONObject(jsonParams),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -126,29 +121,30 @@ public class Edit extends AppCompatActivity {
 
                         try {
                             boolean status = response.getBoolean("status");
-                            if (status) {
-                                //Bloco de codigo
-                                //Toast.makeText(Edit_Equipa.this, "Inserido com sucesso!", Toast.LENGTH_SHORT).show();
-                                finish();
+                            //Toast.makeText(Regist.this, "" + status, Toast.LENGTH_SHORT).show();
 
+                            if (status) {
+
+                                //Bloco de codigo
+                                Toast.makeText(Add.this, R.string.regist_add, Toast.LENGTH_SHORT).show();
+                                finish();
                             } else {
 
                                 //Bloco de codigo
-                                //Toast.makeText(Edit_Equipa.this, "Erro na inserção!", Toast.LENGTH_SHORT).show();
-                                finish();
+
+                                Toast.makeText(Add.this, R.string.regist_error, Toast.LENGTH_SHORT).show();
+
 
                             }
                         } catch (JSONException ex) {
-                            Log.d("regist", "Erro 1!" + ex);
+                            Log.d("regist", "" + ex);
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Log.d("regist3", "" + error.getMessage());
-                        //Toast.makeText(Edit_Equipa.this, "Erro 2!", Toast.LENGTH_SHORT).show();
-                        finish();
+                        Toast.makeText(Add.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
@@ -163,6 +159,6 @@ public class Edit extends AppCompatActivity {
 
         };
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
-    }
 
+    }
 }

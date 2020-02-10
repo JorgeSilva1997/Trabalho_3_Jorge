@@ -1,10 +1,13 @@
-package com.example.trabalho3;
+package com.example.trabalho3.Trab_3;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.trabalho3.Google_Api.Main;
+import com.example.trabalho3.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,10 +38,74 @@ public class Login extends AppCompatActivity {
     EditText user, pass;
     boolean status;
 
+    Context mContext = this;
+    CheckBox checkBox;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    private static final String PREF_NAME = "login";
+    private static final String KEY_REMEMBER = "remember";
+    private static final String KEY_USERNAME = "nome";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_ID = "id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        user = (EditText)findViewById(R.id.user);
+        pass = (EditText)findViewById(R.id.pass);
+
+        checkBox = (CheckBox)findViewById(R.id.box);
+        boolean logout = getIntent().getBooleanExtra("logout", false);
+        sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        if(sharedPreferences.getBoolean(KEY_REMEMBER, false)) {
+            checkBox.setChecked(true);
+        }
+        else {
+            checkBox.setChecked(false);
+        }
+
+        user.setText(sharedPreferences.getString(KEY_USERNAME,""));
+        pass.setText(sharedPreferences.getString(KEY_PASSWORD,""));
+        if(logout == true) {
+            checkBox.setChecked(false);
+            editor.putBoolean(KEY_REMEMBER, false);
+            user.setText("");
+            pass.setText("");
+        }
+
+        if(checkBox.isChecked()) {
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            sharedPreferences.getInt(KEY_ID, -1);
+            intent.putExtra("ID", sharedPreferences.getInt(KEY_ID, -1));
+            startActivity(intent);
+            finish();
+        }
+
+        managePrefs();
+    }
+
+    private final void managePrefs() {
+
+        if(checkBox.isChecked()){
+            String username = user.getText().toString();
+            String password = pass.getText().toString();
+            String pwc = computeMD5Hash(password);
+            editor.putString(KEY_USERNAME, username);
+            editor.putString(KEY_PASSWORD, pwc);
+            editor.putInt(KEY_ID, id);
+            editor.putBoolean(KEY_REMEMBER, true);
+            editor.apply();
+        } else {
+            editor.putBoolean(KEY_REMEMBER, false);
+            editor.remove(KEY_PASSWORD);
+            editor.remove(KEY_USERNAME);
+            editor.apply();
+        }
+
     }
 
     public void btnLogin(View view) {
@@ -62,6 +131,7 @@ public class Login extends AppCompatActivity {
         else {
 
             autenticacao(nome, password);
+            managePrefs();
         }
     }
 
@@ -95,6 +165,7 @@ public class Login extends AppCompatActivity {
 
                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                     intent.putExtra("ID", response.getInt("id"));
+                                    managePrefs();
                                     startActivity(intent);
 
                             } else {
@@ -145,6 +216,13 @@ public class Login extends AppCompatActivity {
         String md5Str = md5Data.toString(16);
 
         return md5Str;
+    }
+
+    public void btnGoGoogle(View view){
+
+        Intent intent = new Intent(Login.this, Main.class);
+        startActivity(intent);
+
     }
 
 }

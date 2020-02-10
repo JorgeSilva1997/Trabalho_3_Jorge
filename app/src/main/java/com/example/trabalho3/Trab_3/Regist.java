@@ -1,4 +1,4 @@
-package com.example.trabalho3;
+package com.example.trabalho3.Trab_3;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.trabalho3.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

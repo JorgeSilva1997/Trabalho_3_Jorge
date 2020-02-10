@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Trab_3.Perfil"
     android:background="#000000">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/firstLayout"
-        android:layout_marginTop="25dp">
+        android:layout_marginLeft="16dp">
+
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/perfil_title"
             android:textSize="35dp"
-            android:gravity="center_horizontal"
+            android:layout_centerVertical="true"
             android:id="@+id/title_detail"
             android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 
+
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/firstLayout"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginLeft="35dp">
+        android:id="@+id/secondlayout"
+        android:layout_toRightOf="@id/firstLayout"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
 
         <!-- NAME -->
 
@@ -41,8 +42,7 @@
             android:id="@+id/name1"
             android:text="@string/name"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -50,8 +50,8 @@
             android:id="@+id/nome"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
-            android:layout_below="@id/name1"
-            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/name1"
+            android:layout_marginLeft="5dp"
             android:textSize="18dp"/>
 
         <!-- MAIL -->
@@ -62,8 +62,7 @@
             android:id="@+id/mail1"
             android:text="@string/mail"
             android:layout_below="@id/nome"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
             android:textColor="#FFFFFF"
             android:textSize="18dp"/>
 
@@ -73,8 +72,10 @@
             android:id="@+id/mail"
             android:textColor="#0083FF"
             android:textColorHint="#0083FF"
-            android:layout_below="@id/mail1"
+            android:layout_below="@id/nome"
             android:layout_marginTop="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/mail1"
             android:textSize="18dp"/>
 
         <!-- PASSWORD -->
@@ -85,17 +86,18 @@
             android:id="@+id/password1"
             android:text="@string/pass"
             android:layout_below="@id/mail"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:textColor="#FFFFFF"
             android:textSize="18dp"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:layout_below="@id/password1"
+            android:layout_below="@id/mail1"
             android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/password1"
+            android:layout_marginLeft="5dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textSize="18dp"
@@ -103,8 +105,5 @@
             android:maxLength="20"/>
 
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>

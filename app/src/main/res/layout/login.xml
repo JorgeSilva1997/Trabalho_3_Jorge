@@ -139,4 +139,12 @@
 
     </RelativeLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnGoGoogle"
+        android:hint="Google API"
+        android:onClick="btnGoGoogle"
+        android:layout_alignParentRight="true"/>
+
 </RelativeLayout>
